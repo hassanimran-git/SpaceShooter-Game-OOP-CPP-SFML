@@ -197,15 +197,16 @@ public:
                 //enemy here
                 //draw enemies,bombs + collisons + alive enemies
                 EnemiesDead=true;
+                int randomNumber;
                 for (int i = 0; i < enemy_count; i++){
+                    randomNumber = rand() % 10 + 1;
                     enemy[i]->render(window);
                     window.draw(enemy[i]->bomb->sprite_Bomb); 
-                    enemy[i]->update(delay);// Update Enemy and its Bomb
+                    enemy[i]->update(delay + randomNumber);// Update Enemy and its Bomb
                     CheckCollisions(enemy[i]);
                     if(enemy[i]->enemy_sprite.getPosition().y!=1000)//enemy alive
                         EnemiesDead=false;
                 }
-
 
 
                 if(EnemiesDead && level==2){gameOver=true;}
@@ -484,8 +485,8 @@ const int records = 4;
 const int top = 3;
 struct playerData //struct to store input line
 {
-    string name;
-    int score;
+    string name = "anonymous";
+    int score = 0;
 };
 
 
@@ -496,6 +497,8 @@ struct playerData //struct to store input line
         if (scoreFile.is_open())
         {
             // append name and score 
+            if(playerName=="")
+                playerName = "NULL";
             scoreFile << playerName << " " << score << endl;
             scoreFile.close();
 

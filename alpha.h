@@ -25,7 +25,7 @@ public:
     void update(float delay) override
     {
         int delay_int=delay;
-        if(delay_int%alphaDelay==0)
+        if(delay_int%alphaDelay==0 && bomb->sprite_Bomb.getPosition().y>800)
             bomb->sprite_Bomb.setPosition(enemy_sprite.getPosition().x+20,enemy_sprite.getPosition().y);
 
         bomb->move();
